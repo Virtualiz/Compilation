@@ -1,0 +1,52 @@
+.data
+str: .asciiz " "
+str2: .asciiz "\n"
+strvrai: .asciiz "vrai"
+strfaux: .asciiz "faux"
+.text
+main:
+
+# Initialisation de $s7 avec $sp (base des variables)
+move $s7, $sp
+
+# Réservation de la place pour les 2 variables
+addi $sp, $sp, -8
+
+# affectation : v1 := Nombre [val=8]
+li $v0,8 #Charge la valeur entière8
+sw $v0,0($s7) #on affecte la valeur à la variable
+
+# affectation : v2 := Nombre [val=5]
+li $v0,5 #Charge la valeur entière5
+sw $v0,-4($s7) #on affecte la valeur à la variable
+
+# affectation : v2 := Idf [nom=v1]
+lw $v0,0($s7) #Chargement de v1
+sw $v0,-4($s7) #on affecte la valeur à la variable
+
+# ecrire v1 
+# ecriture de v1
+li $v0 , 1 #code de print entier
+lw $a0 , 0($s7) #recuperation de la valeur de v1
+syscall #affichage
+
+#fin ecrire : saut de ligne
+li $v0,4 #code de print caractere
+la $a0, str2 #affecte en valeur a ecrire la chaine correspondant a retour a la ligne
+syscall #afficher
+
+# ecrire v2 
+# ecriture de v2
+li $v0 , 1 #code de print entier
+lw $a0 , -4($s7) #recuperation de la valeur de v2
+syscall #affichage
+
+#fin ecrire : saut de ligne
+li $v0,4 #code de print caractere
+la $a0, str2 #affecte en valeur a ecrire la chaine correspondant a retour a la ligne
+syscall #afficher
+
+end : 
+#Fin du programme
+li $v0,10 #code retour systeme
+syscall #retour systeme

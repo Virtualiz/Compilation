@@ -1,0 +1,7 @@
+programme p1 {
+	booleen b1 b2 ;
+	b1 := vrai ;
+	b2 := b1 ;
+
+	ecrire b1 b2 ; /* ecrire idf+ ; affichage de vrai vrai */
+}

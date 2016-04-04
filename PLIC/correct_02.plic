@@ -1,0 +1,10 @@
+programme p1 {
+	entier v1 v2 ;
+	v1 := 8 ;
+	v2 := 5 ;
+	
+	v2 := v1 ;
+
+	ecrire v1 ; /* affichage 8 */
+	ecrire v2 ; /* affichage 8 */
+}
